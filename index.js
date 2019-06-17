@@ -13,7 +13,8 @@ var alreadyCompiledFiles = [];
 var defaultOptions = {
   cache: false,
   forceWatch: false,
-  optimize: false
+  optimize: false,
+  debug: false
 };
 
 var getFiles = function (options) {
@@ -102,10 +103,10 @@ var dependenciesFor = function (resourcePath, files) {
 
 var findAllDependencies = function (files) {
   return Promise.all(files.map(
-      function (f) {
-        return elmCompiler.findAllDependencies(f)
-      }
-    ))
+    function (f) {
+      return elmCompiler.findAllDependencies(f)
+    }
+  ))
     .then(flatten);
 }
 
